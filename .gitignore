@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Conda / IDE
+.conda/
+miniforge3/
+miniconda3/
+anaconda3/
+envs/
+pkgs/
+.vscode/
+.idea/
+
+# C++ / CMake build outputs
+build/
+cmake-build-*/
+*.o
+*.out
+cpp_task_manual
+
+# Generated videos and media
+*.mp4
+*.avi
+
+# OS
+.DS_Store
