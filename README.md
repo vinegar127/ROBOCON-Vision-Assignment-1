@@ -546,6 +546,9 @@ ls -lh advanced_analysis.mp4
 
 > 截图文件：`assets/python_b/advanced_analysis_panel.png`
 > 本地输出路径：`python_B/advanced_analysis.mp4`
+>
+> 这一帧取自输出视频的第 316 帧（拍摄时刚好在晃动镜头），是三格里「帧间运动」面板内容最明显的一帧；
+> 如果取静止段落的帧，第三格会是全黑的（因为确实没有运动），这符合算法行为。
 
 ### 4.4 为什么两个项目不能放在同一个环境里
 
@@ -860,36 +863,42 @@ git clone https://github.com/vinegar127/ROBOCON-Vision-Assignment-1.git
 cd ROBOCON-Vision-Assignment-1
 
 git config user.name  "vinegar127"
-git config user.email "vinegar127@users.noreply.github.com"
+git config user.email "yue095698@gmail.com"
 
 git status
 
-# 提交 1：项目骨架 + .gitignore + assets 目录
-git add .gitignore VERSION_REQUIREMENTS.md python_A python_B cpp assets
+# 提交 1：项目骨架（starter 三个项目 + .gitignore + assets 目录）
+git add .gitignore VERSION_REQUIREMENTS.md python_A python_B assets \
+        cpp/include cpp/src cpp/README.md
 git commit -m "chore: import starter projects and repo skeleton"
 
-# 提交 2：系统信息
+# 提交 2：README（系统信息实测结果 + 环境/版本规划）
 git add README.md
-git commit -m "docs: record verified system environment information"
+git commit -m "docs: add README with verified system information and environment plan"
 
-# 提交 3：在非 main 分支上完成 C++/CMake 部分
+# 提交 3：在非 main 分支上完成 C++ / CMake 部分
 git switch -c feature/cpp-cmake
-git add cpp/CMakeLists.txt README.md
-git commit -m "feat(cpp): add CMakeLists and manual g++ build documentation"
+git add cpp/CMakeLists.txt
+git commit -m "feat(cpp): add CMakeLists.txt for the C++17 OpenCV/Eigen target"
 
-# 把分支上的修改合并回主分支
+# 把该分支上的修改合并回主分支
 git switch main
-git merge --no-ff feature/cpp-cmake -m "merge: bring C++/CMake build into main"
+git merge --no-ff -m "merge: bring C++/CMake build definition into main" feature/cpp-cmake
 
-# 提交 4：Python A/B 运行结果与进程观察
-git add README.md assets
-git commit -m "docs: add Project A/B results and process observation"
+# 提交 4：Project A 运行结果 + 摄像头信息 + 进程观察证据
+git add README.md assets/system assets/process assets/python_a
+git commit -m "docs: fill in measured Project A run, camera setup and process observation results"
 
-git push -u origin main
-git push origin --all
+# 提交 5：Project B 与 C++/CMake 的输出证据帧
+git add assets/python_b assets/cpp
+git commit -m "docs: add Project B and C++/CMake output evidence frames"
 
 git log --oneline --graph --all
 git branch -a
+
+# 推送到 GitHub
+git push -u origin main
+git push origin feature/cpp-cmake
 ```
 
 ### 7.2 提交历史
@@ -899,27 +908,37 @@ git log --oneline --graph --all
 ```
 
 ```text
-*   3f1c2ab (HEAD -> main) merge: bring C++/CMake build into main
+* bbff93b (HEAD -> main) docs: add Project B and C++/CMake output evidence frames
+* 74da1bc docs: fill in measured Project A run, camera setup and process observation results
+*   2f6a55d merge: bring C++/CMake build definition into main
 |\
-| * 9a4d17e (feature/cpp-cmake) feat(cpp): add CMakeLists and manual g++ build documentation
+| * 22cea74 (feature/cpp-cmake) feat(cpp): add CMakeLists.txt for the C++17 OpenCV/Eigen target
 |/
-* 7b2e905 docs: record verified system environment information
-* 1d4a6f3 chore: import starter projects and repo skeleton
+* 958b219 docs: add README with verified system information and environment plan
+* d5039b8 chore: import starter projects and repo skeleton
+* ff2fb5b Initial commit
 ```
+
+> 上面这段是**写完本节之前**执行 `git log` 的结果，所以最后一个「只更新 README 本节」的提交没有列进去。
 
 ```bash
 git branch -a
 ```
 
 ```text
-  assets
   feature/cpp-cmake
 * main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/assets
   remotes/origin/main
 ```
 
-满足要求：**≥3 个有意义的 commit**（骨架 / 系统信息 / C++ CMake / Python 结果），并且使用了非 main 分支
-`feature/cpp-cmake`，其修改已通过 `git merge --no-ff` 回到 `main`。
+`remotes/origin/assets` 是建仓库时顺手建的空分支（和 `main` 指向同一个 `Initial commit`），没有任何实际内容，
+属于可以清理的残留，推送后可以删掉：`git push origin --delete assets`。
+
+满足要求：**6 个 commit** 中有 5 个是「一个主题一次提交」（骨架 / README 与环境规划 / C++ CMakeLists /
+Project A 与进程观察 / Project B 与 C++ 证据），远超「≥3 个有意义的 commit」；并且使用了非 main 分支
+`feature/cpp-cmake`，该分支上的修改已通过 `git merge --no-ff` 合并回 `main`（合并节点 `2f6a55d`）。
 
 ### 7.3 没有提交到 Git 的内容
 
