@@ -1,0 +1,27 @@
+$ ls -l /dev/video*
+crw-rw----+ 1 root video 81, 0  9月 28  2026 /dev/video0
+crw-rw----+ 1 root video 81, 1  9月 28  2026 /dev/video1
+crw-rw----+ 1 root video 81, 2  9月 27 19:10 /dev/video2
+crw-rw----+ 1 root video 81, 3  9月 27 19:10 /dev/video3
+
+$ for d in /sys/class/video4linux/*; do echo "$(basename $d): $(cat $d/name)"; done
+video0: Integrated Camera: Integrated C
+video1: Integrated Camera: Integrated C
+video2: Lanseyaoji: Lanseyaoji
+video3: Lanseyaoji: Lanseyaoji
+
+$ lsusb | grep -i -E "cam|lanseyaoji|realtek"
+Bus 001 Device 010: ID 0bda:0567 Realtek Semiconductor Corp. Lanseyaoji
+Bus 003 Device 002: ID 04f2:b808 Chicony Electronics Co., Ltd Integrated Camera
+
+$ v4l2-ctl --list-devices
+Lanseyaoji: Lanseyaoji (usb-0000:04:00.3-2):
+	/dev/video2
+	/dev/video3
+	/dev/media1
+
+Integrated Camera: Integrated C (usb-0000:04:00.4-1):
+	/dev/video0
+	/dev/video1
+	/dev/media0
+

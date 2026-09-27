@@ -1,0 +1,6 @@
+$ pgrep -af "camera.py"
+10056 python camera.py --camera 2 --output raw_capture.mp4 --width 1280 --height 720 --fps 30
+
+$ ps -o pid,ppid,cmd,%cpu,%mem,etime -p 10056
+    PID    PPID CMD                         %CPU %MEM     ELAPSED
+  10056    9995 python camera.py --camera 2  215  0.4       00:20

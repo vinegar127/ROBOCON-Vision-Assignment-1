@@ -1,0 +1,6 @@
+$ python - <<PY  (依次尝试 index 0..4)
+index 0: opened=True read=True size=(640, 480) reported_fps=30.00
+index 1: opened=False read=False size=None reported_fps=0.00
+index 2: opened=True read=True size=(640, 480) reported_fps=30.00
+index 3: opened=False read=False size=None reported_fps=0.00
+index 4: opened=False read=False size=None reported_fps=0.00

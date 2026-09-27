@@ -1,0 +1,17 @@
+================================================================
+ROBOCON Vision Assignment 1 - Python Project A
+PID:          10056
+PPID:         9995
+Python:       /home/vinegar/dsh/miniforge3/envs/robocon_a/bin/python
+Python ver.:  3.10.21
+Camera index: 2
+Raw output:   /home/vinegar/dsh/ROBOCON-Vision-Assignment-1/python_A/raw_capture.mp4
+Keep this process running and inspect it from another terminal.
+Press q or ESC in an OpenCV window to exit.
+================================================================
+Actual stream: 1280x720, writer FPS=10.00
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+Saved raw video: /home/vinegar/dsh/ROBOCON-Vision-Assignment-1/python_A/raw_capture.mp4
+Captured frames: 467
+Elapsed time:    44.8 s
+Loop rate:       10.4 frame/s
