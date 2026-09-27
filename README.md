@@ -363,6 +363,8 @@ frames: 467
 fourcc: FMP4
 ```
 
+> 本地输出路径：`python_A/raw_capture.mp4`（被 `.gitignore` 排除，未上传 GitHub，保留在本机）。
+
 ### 2.4 截图证据
 
 三个窗口（原始 / 灰度 / 轮廓）必须**同时**来自正在运行的 Project A：
